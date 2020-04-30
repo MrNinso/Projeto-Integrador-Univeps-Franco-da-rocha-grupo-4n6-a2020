@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Projeto Integrador Univeps franco da rocha grupo4n6 a2020"
