@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/d_mrg_hafl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/eventBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background" />
+
+
+        <TextView
+            android:id="@+id/eventTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titulo do evento"
+            android:layout_margin="@dimen/d_mrg_hafl"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.SearchResult.Title"/>
+
+        <TextView
+            android:id="@+id/eventDes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/d_mrg"
+            android:text="um texto muito longo que eu vou copiar e colar, um texto muito longo que eu vou copiar e colar, um texto muito longo que eu vou copiar e colar, um texto muito longo que eu vou copiar e colar,um texto muito longo que eu vou copiar e colar, um texto muito longo que eu vou copiar e colar, um texto muito longo que eu vou copiar e colar,um texto muito longo que eu vou copiar e colar" />
+
+        <TextView
+            android:id="@+id/eventDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/d_mrg_hafl"
+            android:text="Seg as 18h 19h30"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+
+
+        <TextView
+            android:id="@+id/eventLocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Rua Totalmente real, 405"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Subtitle"
+            android:textColor="@color/purple700" />
+
+        <Button
+            android:id="@+id/eventParticipateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/d_mrg_hafl"
+            android:padding="@dimen/d_mrg_hafl"
+            android:text="@string/participar" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
