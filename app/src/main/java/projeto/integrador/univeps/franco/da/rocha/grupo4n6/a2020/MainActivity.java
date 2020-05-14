@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.base.utils.lib.object.BaseList;
-import com.developer.base.utils.lib.tool.BaseDevice;
 
 import java.util.Date;
 
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity { //TODO VER O QUE FAZ COM O
                     Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                     startActivity(unrestrictedIntent);
                 } catch(ActivityNotFoundException innerEx) {
-                    Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show(); //TODO Colocar Dialog para o erro
                 }
             }
         });
