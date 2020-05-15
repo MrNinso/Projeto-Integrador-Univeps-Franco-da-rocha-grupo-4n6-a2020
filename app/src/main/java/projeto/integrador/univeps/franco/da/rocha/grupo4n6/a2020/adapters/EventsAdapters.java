@@ -14,16 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.developer.base.utils.lib.object.BaseList;
 
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.R;
-import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.objetos.Event;
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.objetos.Evento;
 
 public class EventsAdapters extends RecyclerView.Adapter<EventsAdapters.Holder> {
 
-    private BaseList<Event> Eventos;
+    private BaseList<Evento> eventos;
     private Resources Res;
     private onLocalClicked OnLocalClickListener;
 
-    public EventsAdapters(BaseList<Event> eventos, Resources res) {
-        Eventos = eventos;
+    public EventsAdapters(BaseList<Evento> eventos, Resources res) {
+        this.eventos = eventos;
         Res = res;
     }
 
@@ -38,7 +38,7 @@ public class EventsAdapters extends RecyclerView.Adapter<EventsAdapters.Holder> 
 
     @Override
     public void onBindViewHolder(@NonNull EventsAdapters.Holder holder, int position) {
-        Event e = this.Eventos.get(position);
+        Evento e = this.eventos.get(position);
 
         if (e.getCachedImgURL() != null)
             holder.banner.setVisibility(View.VISIBLE);//TODO CARREGAR IMAGEM EFICINETE
@@ -58,15 +58,15 @@ public class EventsAdapters extends RecyclerView.Adapter<EventsAdapters.Holder> 
 
     @Override
     public int getItemCount() {
-        return Eventos.size();
+        return eventos.size();
     }
 
     public void setOnLocalClickListener(onLocalClicked o) {
         this.OnLocalClickListener = o;
     }
 
-    public void atualizarDados(BaseList<Event> e) {
-        Eventos = e;
+    public void atualizarDados(BaseList<Evento> e) {
+        eventos = e;
         notifyDataSetChanged();
     }
 

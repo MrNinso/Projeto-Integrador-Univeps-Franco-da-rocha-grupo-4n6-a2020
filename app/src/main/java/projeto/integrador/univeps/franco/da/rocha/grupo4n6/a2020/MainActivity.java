@@ -15,14 +15,16 @@ import com.developer.base.utils.lib.object.BaseList;
 
 import java.util.Date;
 
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.API.local.DBHelper;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.adapters.EventsAdapters;
-import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.objetos.Event;
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.objetos.Evento;
 
 public class MainActivity extends AppCompatActivity { //TODO VER O QUE FAZ COM O TEMA ESCURO 10
 
     //TODO PENSAR EM SOCKETS
 
     private RecyclerView EventList;
+    private DBHelper mDBHelper = new DBHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,8 @@ public class MainActivity extends AppCompatActivity { //TODO VER O QUE FAZ COM O
 
         EventList = findViewById(R.id.eventList);
 
-        BaseList<Event> e = new BaseList<>(61, index ->
-            new Event(
+        mDBHelper.updateEventos(new BaseList<>(61, index ->
+            new Evento(
                     String.valueOf(index),
                     String.format("Evento %d", index),
                     "a",
@@ -42,9 +44,9 @@ public class MainActivity extends AppCompatActivity { //TODO VER O QUE FAZ COM O
                     new Date(),
                     ((index%2) == 0) ? null : ""
             )
-        );
+        ));
 
-        EventsAdapters ea = new EventsAdapters(e, this.getResources());
+        EventsAdapters ea = new EventsAdapters(mDBHelper.getEventos(), this.getResources());
 
         ea.setOnLocalClickListener((v) -> {
             String uri = "http://maps.google.com/maps?daddr="+((TextView) v).getText().toString();
