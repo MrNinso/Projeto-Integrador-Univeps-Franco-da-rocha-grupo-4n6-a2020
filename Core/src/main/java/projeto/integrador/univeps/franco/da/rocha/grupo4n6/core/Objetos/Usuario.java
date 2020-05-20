@@ -1,10 +1,10 @@
-package projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.objetos;
+package projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos;
 
-import com.developer.base.utils.lib.object.BaseList;
+import java.util.ArrayList;
 
 public class Usuario {
     private String Nome, ChaveLogin, Email;
-    public BaseList<String> Inscricoes = new BaseList<>();
+    public ArrayList<String> Inscricoes = new ArrayList<>();
 
     public Usuario(String nome, String chaveLogin, String email) {
         Nome = nome;

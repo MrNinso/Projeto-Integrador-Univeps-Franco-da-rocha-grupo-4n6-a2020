@@ -1,4 +1,4 @@
-package projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.objetos;
+package projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos;
 
 import java.util.Date;
 
