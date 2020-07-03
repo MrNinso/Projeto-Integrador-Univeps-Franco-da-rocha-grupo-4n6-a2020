@@ -12,12 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.base.utils.lib.object.BaseList;
+import com.developer.base.utils.lib.tool.BaseCrypto;
 
 import java.util.Date;
 
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.API.local.DBHelper;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.adapters.EventsAdapters;
-import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.objetos.Evento;
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos.Evento;
 
 public class MainActivity extends AppCompatActivity { //TODO VER O QUE FAZ COM O TEMA ESCURO 10
 
@@ -68,7 +69,5 @@ public class MainActivity extends AppCompatActivity { //TODO VER O QUE FAZ COM O
 
         EventList.setHasFixedSize(true);
         EventList.setLayoutManager(new LinearLayoutManager(this));
-
-
     }
 }

@@ -11,9 +11,10 @@ import com.developer.base.utils.lib.extras.SQLiteBaseHelper;
 import com.developer.base.utils.lib.object.BaseList;
 
 import java.util.Date;
+import java.util.List;
 
-import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.objetos.Evento;
-import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.objetos.Usuario;
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos.Evento;
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos.Usuario;
 
 public class DBHelper extends SQLiteBaseHelper {
 
@@ -54,24 +55,21 @@ public class DBHelper extends SQLiteBaseHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 
-    public boolean updateInscricoes(BaseList<String> inscricoes) {
-
+    public boolean updateInscricoes(List<String> inscricoes) {
         return doTransaction(helper -> {
             SQLiteDatabase db = getWritableDatabase();
-            final boolean[] r = { true };
-            db.beginTransaction();
             db.delete("INSCRICOES", null, null);
-            inscricoes.forEachBreakable((index, s) -> {
+
+            for (String inscricao : inscricoes) {
                 ContentValues cv = new ContentValues();
 
-                cv.put("ID", s);
+                cv.put("ID", inscricao);
 
-                r[0] = db.insert("INSCRICOES", null, cv) > 0;
-
-                return r[0] ? EachBreakable.CONTINUE : EachBreakable.BREAK;
-            });
-
-            return r[0];
+                if (!(db.insert("INSCRICOES", null, cv) > 0)) {
+                    return false;
+                }
+            }
+            return true;
         });
 
     }

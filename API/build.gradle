@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+mainClassName = 'projeto.integrador.univeps.franco.da.rocha.grupo4n6.api.API'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation 'com.github.MrNinso:SimpleHTTPServer:1.0.1.RC'
+    implementation 'org.mongodb:mongo-java-driver:2.12.3'
+
+    implementation project(':Core')
+}

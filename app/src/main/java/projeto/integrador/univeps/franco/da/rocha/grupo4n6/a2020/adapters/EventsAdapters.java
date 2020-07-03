@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.developer.base.utils.lib.object.BaseList;
 
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.API.remote.APIRequest;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.R;
-import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.objetos.Evento;
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos.Evento;
 
 public class EventsAdapters extends RecyclerView.Adapter<EventsAdapters.Holder> {
 
@@ -89,7 +90,7 @@ public class EventsAdapters extends RecyclerView.Adapter<EventsAdapters.Holder> 
 
         private void onClick(View v) {
             String id = (String) v.getTag();
-
+            APIRequest.getInstance(v.getContext()).logar("adkdlaskd", (Acao, resposta, e) -> {});
             System.out.println(id); //TODO CHAMAR TELA DE LOGIN CASO USUARIO NÃO TENHA LOGADO
         }
     }
