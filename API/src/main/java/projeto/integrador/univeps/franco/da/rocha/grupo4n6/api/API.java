@@ -6,21 +6,24 @@ import com.developer.Simple.core.HTTPCodes;
 import com.developer.Simple.core.Server;
 import com.developer.Simple.core.ServerResponse;
 import com.google.gson.Gson;
-import com.sun.net.httpserver.HttpExchange;
 
-import java.io.IOException;
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
 
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.api.Routes.AdminRouter;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.api.Routes.UsuarioRouter;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.api.banco.BancoDados;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.api.banco.drives.mongoDriver;
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.API.Requisicao.Constantes;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.API.Requisicao.LoginArgumento;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos.Evento;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos.Usuario;
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Utils.MapUtils;
 
-public class API  {
+public class API implements Constantes {
 
     public static BancoDados Banco;
 
@@ -32,13 +35,7 @@ public class API  {
             System.exit(1);
         }
 
-        HTTPServer server = new HTTPServer(8000, buildRoutes()) {
-            @Override
-            public void sendResponse(HttpExchange exchange, ServerResponse serverResponse) throws IOException {
-                System.out.println("FOI");
-                super.sendResponse(exchange, serverResponse);
-            }
-        };
+        HTTPServer server = new HTTPServer(8000, buildRoutes());
 
         server.start();
 
@@ -53,7 +50,7 @@ public class API  {
 
                 ArrayList<Evento> e = Banco.getEventosPage(clientRequest.URI[0]);
 
-                return e != null ?
+                return e.size() > 0 ?
                         new ServerResponse(HTTPCodes.OK, new Gson().toJson(e).getBytes()) :
                         new ServerResponse(HTTPCodes.NO_CONTENT);
             });
@@ -104,16 +101,59 @@ public class API  {
                 return new ServerResponse(HTTPCodes.BAD_REQUEST);
             });
 
-            routes.put("Usuario", new UsuarioRouter(userRoutes -> {
-                userRoutes.put("Evento", clientRequest -> {
-                    return new ServerResponse(HTTPCodes.NOT_IMPLEMENTED);
+            routes.put("Usuario", new UsuarioRouter(routasUsuario -> {
+                routasUsuario.put("Evento", new Router(rotasEventos -> {
+                    rotasEventos.put("Inscrever", clientRequest -> {
+                        String id = clientRequest.body;
+                        if (id == null || "".equals(id))
+                            return new ServerResponse(HTTPCodes.BAD_REQUEST);
+                        else {
+                            String email = clientRequest.Headers.getFirst(Constantes.EMAIL);
+                            return Banco.inscreverUsuarioEvento(email, id) ?
+                                new ServerResponse(HTTPCodes.OK) :
+                                new ServerResponse(HTTPCodes.INTERNAL_SERVER_ERROR);
+                        }
+                    });
+
+                    rotasEventos.put("Desinscrever", clientRequest -> {
+                        String id = clientRequest.body;
+                        if (id == null || "".equals(id))
+                            return new ServerResponse(HTTPCodes.BAD_REQUEST);
+                        else {
+                            String email = clientRequest.Headers.getFirst(Constantes.EMAIL);
+                            return Banco.desinscreverUsuarioEvento(email, id) ?
+                                    new ServerResponse(HTTPCodes.OK) :
+                                    new ServerResponse(HTTPCodes.INTERNAL_SERVER_ERROR);
+                        }
+                    });
+
+                    return rotasEventos;
+                }));
+
+                routasUsuario.put("Conta", clientRequest -> {
+                    byte b = clientRequest.body.getBytes()[0];
+                    clientRequest.body = new String(ArrayUtils.remove(clientRequest.body.getBytes(), 0));
+
+                    TreeMap<?, ?> args = new Gson().fromJson(clientRequest.body, TreeMap.class);
+
+                    switch (b) {
+                        case ContaAcoes.ALTERAR_EMAIL:
+                            if (MapUtils.containsKeys(args, ContaAcoes.ALTERAR_EMAIL_ARGS)) {
+                                
+                            }
+                            break;
+                        case ContaAcoes.ALTERAR_SENHA:
+                            break;
+                        case ContaAcoes.ALTERAR_CADASTRO:
+                            break;
+                        case ContaAcoes.BAIXAR_CADASTRO:
+                            break;
+                    }
+
+                    return new ServerResponse(HTTPCodes.BAD_REQUEST);
                 });
 
-                userRoutes.put("Conta", clientRequest -> {
-                    return new ServerResponse(HTTPCodes.NOT_IMPLEMENTED);
-                });
-
-                return userRoutes;
+                return routasUsuario;
             }));
 
             return routes;

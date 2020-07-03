@@ -10,11 +10,13 @@ public abstract class BancoDados {
 
     public abstract ArrayList<Evento> getEventosPage(String page);
 
+    public abstract boolean inscreverUsuarioEvento(String email, String idEvento);
+
+    public abstract boolean desinscreverUsuarioEvento(String email, String idEvento);
+
     public abstract String logarUsuario(String email, String chave);
 
     public abstract Exception cadastrarUsuario(Usuario u); //TODO MUDAR PARA byte para desempenho
-
-    public abstract boolean inscreverUsuario(String chave, String email, String idEvento);
 
     public abstract String getChaveByEmail(String email);
 
