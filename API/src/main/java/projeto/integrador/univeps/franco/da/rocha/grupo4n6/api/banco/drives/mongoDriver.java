@@ -29,6 +29,16 @@ public class mongoDriver extends BancoDados {
     }
 
     @Override
+    public boolean inscreverUsuarioEvento(String email, String idEvento) {
+        return false;
+    }
+
+    @Override
+    public boolean desinscreverUsuarioEvento(String email, String idEvento) {
+        return false;
+    }
+
+    @Override
     public Exception cadastrarUsuario(Usuario u) {
         return null;
     }
@@ -46,10 +56,5 @@ public class mongoDriver extends BancoDados {
     @Override
     public Exception deletarEvento(String ID) {
         return null;
-    }
-
-    @Override
-    public boolean inscreverUsuario(String chave, String email, String idEvento) {
-        return false;
     }
 }

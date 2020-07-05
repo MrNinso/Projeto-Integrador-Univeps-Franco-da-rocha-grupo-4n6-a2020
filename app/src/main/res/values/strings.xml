@@ -2,4 +2,5 @@
     <string name="app_name">Projeto Integrador Univeps franco da rocha grupo4n6 a2020</string>
     <string name="inicio">Inicio</string>
     <string name="participar">participar</string>
+    <string name="formatoData">dd/MM/yyyy HH:mm</string>
 </resources>

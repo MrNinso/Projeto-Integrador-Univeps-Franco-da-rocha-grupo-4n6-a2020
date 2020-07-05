@@ -39,7 +39,7 @@ public class APIRequest {
 
     public void logar(String chave, OnResposta l) {
         pool.addTask(new BaseTask(task -> {
-            doRequest(new BaseMap<>(), "dklsajkdlakd");//TODO REMOVER
+            doRequest(new BaseMap<>(), "dklsajkdlakd", "dasdada");//TODO REMOVER
             return null;
         }));
     }
@@ -48,7 +48,7 @@ public class APIRequest {
 
     }
 
-    private String doRequest(BaseMap<String, Object> postMapa, String chave, String Email) throws Exception {
+    private String doRequest(Map<String, Object> postMapa, String chave, String Email) throws Exception {
         URL url = new URL("http://192.168.0.17:8000/Login");
 
         StringBuilder postBuilder = new StringBuilder();

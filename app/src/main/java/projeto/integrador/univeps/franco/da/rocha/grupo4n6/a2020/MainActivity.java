@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity { //TODO VER O QUE FAZ COM O
             new Evento(
                     String.valueOf(index),
                     String.format("Evento %d", index),
-                    "a",
+                    String.format("Essa é a Descrição de um evento de test %d apenas para visualizar", index),
                     "Av. Alexios Jafet, 1569 - Jardim Ipanema (Zona Oeste), São Paulo - SP, 05181-010",
                     new Date(),
                     new Date(),
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity { //TODO VER O QUE FAZ COM O
         EventsAdapters ea = new EventsAdapters(mDBHelper.getEventos(), this.getResources());
 
         ea.setOnLocalClickListener((v) -> {
-            String uri = "http://maps.google.com/maps?daddr="+((TextView) v).getText().toString();
+            String uri = "https://maps.google.com/maps?daddr="+((TextView) v).getText().toString();
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
             intent.setPackage("com.google.android.apps.maps");
             try { //TODO TESTAR EM VM SEM GOOGLE MAPS

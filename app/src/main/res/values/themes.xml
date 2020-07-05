@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/purple500</item>
         <item name="colorPrimaryDark">@color/purple700</item>
         <item name="colorAccent">@color/teal200</item>
+
+        <item name="colorLink">@color/purple700</item>
     </style>
 
 </resources>

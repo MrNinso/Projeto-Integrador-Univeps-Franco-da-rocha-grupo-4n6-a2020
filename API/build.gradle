@@ -13,6 +13,7 @@ java {
 
 dependencies {
     implementation 'com.github.MrNinso:SimpleHTTPServer:1.0.1.RC'
+    implementation 'org.apache.commons:commons-lang3:3.10'
     implementation 'org.mongodb:mongo-java-driver:2.12.3'
 
     implementation project(':Core')

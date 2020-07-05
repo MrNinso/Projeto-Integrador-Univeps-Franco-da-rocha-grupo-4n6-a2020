@@ -1,5 +1,6 @@
 package projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.developer.base.utils.lib.object.BaseList;
 
+import java.text.SimpleDateFormat;
+
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.API.remote.APIRequest;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.a2020.R;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos.Evento;
@@ -22,10 +25,13 @@ public class EventsAdapters extends RecyclerView.Adapter<EventsAdapters.Holder> 
     private BaseList<Evento> eventos;
     private Resources Res;
     private onLocalClicked OnLocalClickListener;
+    private final SimpleDateFormat simpleDateFormat;
 
+    @SuppressLint("SimpleDateFormat")
     public EventsAdapters(BaseList<Evento> eventos, Resources res) {
         this.eventos = eventos;
         Res = res;
+        simpleDateFormat = new SimpleDateFormat(res.getString(R.string.formatoData));
     }
 
     @NonNull
@@ -48,8 +54,12 @@ public class EventsAdapters extends RecyclerView.Adapter<EventsAdapters.Holder> 
 
         holder.titulo.setText(e.getTitulo());
         holder.des.setText(e.getDes());
-        holder.data.setText(String.format("%s - %s", e.getDataEventoInico().toString(), e.getDataEventoFim().toString())); // TODO FORMATAR DATAS
         holder.local.setText(e.getLocal());
+
+        holder.data.setText(String.format("%s - %s",
+                simpleDateFormat.format(e.getDataEventoInico()),
+                simpleDateFormat.format(e.getDataEventoFim()))
+        );
 
         if (OnLocalClickListener != null)
         holder.local.setOnClickListener((v) -> OnLocalClickListener.click(v));

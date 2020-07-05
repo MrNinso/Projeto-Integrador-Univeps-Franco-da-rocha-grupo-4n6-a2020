@@ -1,10 +1,11 @@
 package projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
     private String Nome, ChaveLogin, Email;
-    public ArrayList<String> Inscricoes = new ArrayList<>();
+    public List<String> Inscricoes = new ArrayList<>();
 
     public Usuario(String nome, String chaveLogin, String email) {
         Nome = nome;

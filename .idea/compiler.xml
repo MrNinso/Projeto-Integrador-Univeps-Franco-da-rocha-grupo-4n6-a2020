@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7">
       <module name="Projeto_Integrador_Univeps_franco_da_rocha_grupo4n6_a2020.API" target="1.8" />
       <module name="Projeto_Integrador_Univeps_franco_da_rocha_grupo4n6_a2020.app" target="1.8" />
-      <module name="Projeto_Integrador_Univeps_franco_da_rocha_grupo4n6_a2020.Core" target="1.7" />
       <module name="Projeto_Integrador_Univeps_franco_da_rocha_grupo4n6_a2020.NodeServer" target="1.8" />
     </bytecodeTargetLevel>
   </component>

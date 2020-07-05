@@ -17,25 +17,25 @@ import projeto.integrador.univeps.franco.da.rocha.grupo4n6.api.Routes.AdminRoute
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.api.Routes.UsuarioRouter;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.api.banco.BancoDados;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.api.banco.drives.mongoDriver;
+import projeto.integrador.univeps.franco.da.rocha.grupo4n6.api.banco.drives.testDriver;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.API.Requisicao.Constantes;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.API.Requisicao.LoginArgumento;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos.Evento;
 import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Objetos.Usuario;
-import projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.Utils.MapUtils;
 
 public class API implements Constantes {
 
     public static BancoDados Banco;
 
     public static void main(String[] args) throws Exception {
-        Banco = new mongoDriver();
+        Banco = new testDriver();
         Exception e = Banco.connectar();
         if (e != null) {
             e.printStackTrace(); //TODO CRIAR SERVIÇO DE LOG
             System.exit(1);
         }
 
-        HTTPServer server = new HTTPServer(8000, buildRoutes());
+        HTTPServer server = new HTTPServer(8855, buildRoutes());
 
         server.start();
 
@@ -135,20 +135,6 @@ public class API implements Constantes {
                     clientRequest.body = new String(ArrayUtils.remove(clientRequest.body.getBytes(), 0));
 
                     TreeMap<?, ?> args = new Gson().fromJson(clientRequest.body, TreeMap.class);
-
-                    switch (b) {
-                        case ContaAcoes.ALTERAR_EMAIL:
-                            if (MapUtils.containsKeys(args, ContaAcoes.ALTERAR_EMAIL_ARGS)) {
-                                
-                            }
-                            break;
-                        case ContaAcoes.ALTERAR_SENHA:
-                            break;
-                        case ContaAcoes.ALTERAR_CADASTRO:
-                            break;
-                        case ContaAcoes.BAIXAR_CADASTRO:
-                            break;
-                    }
 
                     return new ServerResponse(HTTPCodes.BAD_REQUEST);
                 });

@@ -1,23 +1,32 @@
 package projeto.integrador.univeps.franco.da.rocha.grupo4n6.core.API.Requisicao;
 
+import java.io.Serializable;
+
 public interface Constantes {
     String EMAIL = "email";
     String ASSINATURA = "assinatura";
 
     String ASSINATURA_ADMIN = "assinatura_admin";
 
-    interface ContaAcoes {
-        byte ALTERAR_EMAIL = 0x0;
+    enum ContaAcoes {
+        ALTERAR_EMAIL((byte) 0x0),
+        ALTERAR_SENHA((byte)0x1),
+        ALTERAR_CADASTRO((byte) 0x2),
+        BAIXAR_CADASTRO((byte) 0x3);
 
-        Object[] ALTERAR_EMAIL_ARGS = new String[] {
-          "Email Antigo",
-          "Email Novo",
-          "Chave Antiga"
-        };
+        byte b;
 
-        byte ALTERAR_SENHA = 0x1;
-        byte ALTERAR_CADASTRO = 0x2;
+        ContaAcoes(byte info) {
+            this.b = info;
+        }
 
-        byte BAIXAR_CADASTRO = 0x3;
+        public static class AlterarArgs implements Serializable {
+            public final Object Antigo, Novo;
+
+            public AlterarArgs(Object antigo, Object novo) {
+                Antigo = antigo;
+                Novo = novo;
+            }
+        }
     }
 }
